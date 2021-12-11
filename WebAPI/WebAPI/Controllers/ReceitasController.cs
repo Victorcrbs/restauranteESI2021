@@ -13,24 +13,26 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DepartmentController : ControllerBase
+    public class ReceitasController : ControllerBase
     {
         private readonly IConfiguration _configuration;
-
-        public DepartmentController(IConfiguration configuration)
+        public ReceitasController(IConfiguration configuration)
         {
             _configuration = configuration;
         }
 
-        [HttpGet]
-        public JsonResult Get()
+        [HttpGet("{id}")]
+        public JsonResult Get(int id)
         {
             string query = @"
-                    select DepartmentID, DepartmentName from dbo.Department";
+                    select * from dbo.Receitas
+                    where PratoId = " + id + @"
+                    ";
+
             DataTable table = new DataTable();
-            string sqlDataSource = _configuration.GetConnectionString("EmployeeAppCon");
+            string sqlDataSource = _configuration.GetConnectionString("ESIAppCon");
             SqlDataReader myReader;
-            using(SqlConnection myCon=new SqlConnection(sqlDataSource))
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
             {
                 myCon.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
@@ -47,13 +49,16 @@ namespace WebAPI.Controllers
 
 
         [HttpPost]
-        public JsonResult Post(Department dep)
+        public JsonResult Post(Receitas receita)
         {
             string query = @"
-                    insert into dbo.Department values
-                    ('"+dep.DepartmentName+@"')";
+                    insert into dbo.Receitas values
+                    (" + receita.PratoId + @" , 
+                    " + receita.IngredienteId + @",
+                    " + receita.Quantidade + @")
+                    ";
             DataTable table = new DataTable();
-            string sqlDataSource = _configuration.GetConnectionString("EmployeeAppCon");
+            string sqlDataSource = _configuration.GetConnectionString("ESIAppCon");
             SqlDataReader myReader;
             using (SqlConnection myCon = new SqlConnection(sqlDataSource))
             {
@@ -71,15 +76,16 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
-        public JsonResult Put(Department dep)
+        public JsonResult Put(Receitas receita)
         {
             string query = @"
-                    update dbo.Department set
-                    DepartmentName = '"+dep.DepartmentName+@"'
-                    where DepartmentID = "+dep.DepartmentID + @"
+                    update dbo.Receitas set
+                    IngredienteId = " + receita.IngredienteId + @",
+                    Quantidade = " + receita.Quantidade + @"
+                    where PratoId = " + receita.PratoId + @"
                     ";
             DataTable table = new DataTable();
-            string sqlDataSource = _configuration.GetConnectionString("EmployeeAppCon");
+            string sqlDataSource = _configuration.GetConnectionString("ESIAppCon");
             SqlDataReader myReader;
             using (SqlConnection myCon = new SqlConnection(sqlDataSource))
             {
@@ -101,11 +107,11 @@ namespace WebAPI.Controllers
         public JsonResult Delete(int id)
         {
             string query = @"
-                    delete from dbo.Department
-                    where DepartmentID = "+ id+ @"
+                    delete from dbo.Receitas
+                    where PratoId = " + id + @"
                     ";
             DataTable table = new DataTable();
-            string sqlDataSource = _configuration.GetConnectionString("EmployeeAppCon");
+            string sqlDataSource = _configuration.GetConnectionString("ESIAppCon");
             SqlDataReader myReader;
             using (SqlConnection myCon = new SqlConnection(sqlDataSource))
             {
