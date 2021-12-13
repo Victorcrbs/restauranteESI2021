@@ -48,11 +48,14 @@ namespace WebAPI.Controllers
         [HttpPost]
         public JsonResult Post(Pratos prato)
         {
+            decimal dec = prato.PratoPreco;
+            dec.ToString().Replace(",", ".");
+            string str = dec.ToString().Replace(",", ".");
             string query = @"
                     insert into dbo.Pratos values
                     ('" + prato.PratoNome + @"' , 
                     '" + prato.PratoDescricao + @"',
-                    " + prato.PratoPreco + @")
+                    " + str + @")
                     ";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("ESIAppCon");
@@ -75,11 +78,14 @@ namespace WebAPI.Controllers
         [HttpPut]
         public JsonResult Put(Pratos prato)
         {
+            decimal dec = prato.PratoPreco;
+            dec.ToString().Replace(",", ".");
+            string str = dec.ToString().Replace(",", ".");
             string query = @"
                     update dbo.Pratos set
                     PratoNome = '" + prato.PratoNome + @"',
                     PratoDescricao = '" + prato.PratoDescricao + @"',
-                    PratoPreco = "+ prato.PratoPreco + @"
+                    PratoPreco = "+ str + @"
                     where PratoId = " + prato.PratoId + @"
                     ";
             DataTable table = new DataTable();

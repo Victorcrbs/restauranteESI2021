@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 using WebAPI.Models;
+using System.Globalization;
 
 namespace WebAPI.Controllers
 {
@@ -48,10 +49,13 @@ namespace WebAPI.Controllers
         [HttpPost]
         public JsonResult Post(Ingredientes ing)
         {
+            decimal dec = ing.IngredienteQuantidade;
+            dec.ToString().Replace(",", ".");
+            string str = dec.ToString().Replace(",", ".");
             string query = @"
-                    insert into dbo.Ingredientes (IngredienteNome, IngredienteQuantidade) values
+                    insert into dbo.Ingredientes values
                     ('" + ing.IngredienteNome + @"', 
-                    '" + ing.IngredienteQuantidade + @"')
+                    " + str + @")
                     ";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("ESIAppCon");
@@ -74,10 +78,13 @@ namespace WebAPI.Controllers
         [HttpPut]
         public JsonResult Put(Ingredientes ing)
         {
+            decimal dec = ing.IngredienteQuantidade;
+            dec.ToString().Replace(",", ".");
+            string str = dec.ToString().Replace(",", ".");
             string query = @"
                     update dbo.Ingredientes set
                     IngredienteNome = '" + ing.IngredienteNome + @"',
-                    IngredienteQuantidade = "+ ing.IngredienteQuantidade + @"
+                    IngredienteQuantidade = "+ str + @"
                     where IngredienteId = " + ing.IngredienteId + @"
                     ";
             DataTable table = new DataTable();
