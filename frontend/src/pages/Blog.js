@@ -1,31 +1,74 @@
+import * as React from 'react';
 import { Icon } from '@iconify/react';
 import plusFill from '@iconify/icons-eva/plus-fill';
 import { Link as RouterLink } from 'react-router-dom';
 // material
-import { Grid, Button, Container, Stack, Typography } from '@mui/material';
+import { Button, Container, Stack, Typography } from '@mui/material';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
 // components
 import Page from '../components/Page';
-import { BlogPostCard, BlogPostsSort, BlogPostsSearch } from '../components/_dashboard/blog';
-//
-import POSTS from '../_mocks_/blog';
 
 // ----------------------------------------------------------------------
 
-const SORT_OPTIONS = [
-  { value: 'latest', label: 'Latest' },
-  { value: 'popular', label: 'Popular' },
-  { value: 'oldest', label: 'Oldest' }
-];
+export default function Estoque() {
+  // add axios call
 
-// ----------------------------------------------------------------------
+  const rows = [
+    {
+      IngredienteNome: 'a',
+      IngredienteQuantidade: 1
+    },
+    {
+      IngredienteNome: 'b',
+      IngredienteQuantidade: 2
+    },
+    {
+      IngredienteNome: 'c',
+      IngredienteQuantidade: 3
+    },
+    {
+      IngredienteNome: 'd',
+      IngredienteQuantidade: 4
+    },
+    {
+      IngredienteNome: 'e',
+      IngredienteQuantidade: 5
+    },
+    {
+      IngredienteNome: 'f',
+      IngredienteQuantidade: 6
+    },
+    {
+      IngredienteNome: 'g',
+      IngredienteQuantidade: 7
+    },
+    {
+      IngredienteNome: 'h',
+      IngredienteQuantidade: 8
+    },
+    {
+      IngredienteNome: 'i',
+      IngredienteQuantidade: 9
+    },
+    {
+      IngredienteNome: 'j',
+      IngredienteQuantidade: 10
+    }
+  ];
 
-export default function Blog() {
   return (
     <Page title="Dashboard: Blog | Minimal-UI">
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            Blog
+            Estoque
           </Typography>
           <Button
             variant="contained"
@@ -33,20 +76,29 @@ export default function Blog() {
             to="#"
             startIcon={<Icon icon={plusFill} />}
           >
-            New Post
+            Adicionar ingrediente
           </Button>
         </Stack>
-
-        <Stack mb={5} direction="row" alignItems="center" justifyContent="space-between">
-          <BlogPostsSearch posts={POSTS} />
-          <BlogPostsSort options={SORT_OPTIONS} />
-        </Stack>
-
-        <Grid container spacing={3}>
-          {POSTS.map((post, index) => (
-            <BlogPostCard key={post.id} post={post} index={index} />
-          ))}
-        </Grid>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Ingrediente</TableCell>
+                <TableCell>Quantidade&nbsp;(g)</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.map((row) => (
+                <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  <TableCell component="th" scope="row">
+                    {row.IngredienteNome}
+                  </TableCell>
+                  <TableCell>{row.IngredienteQuantidade}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Container>
     </Page>
   );
