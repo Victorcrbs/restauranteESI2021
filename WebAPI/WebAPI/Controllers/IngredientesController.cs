@@ -22,6 +22,30 @@ namespace WebAPI.Controllers
             _configuration = configuration;
         }
 
+        // 0 = falta de ingredientes
+        // 1 = tem ingredientes suficientes
+        public int GetIngredientAvailability(int id, decimal qtd)
+        {
+            string query = @"
+                    select * from dbo.Ingredientes WHERE dbo.Ingredientes.id_ing = " + id + " AND dbo.Ingredientes.qtd_ing >= " + qtd;
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("ESIAppCon");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader); ;
+                    //Console.WriteLine("Linhas retornadas para id: " + id + " - " + table.Rows.Count);
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+            return table.Rows.Count;
+        }
+
         [HttpGet]
         public JsonResult Get()
         {
