@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 using WebAPI.Models;
-
+using Newtonsoft.Json;
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -22,26 +22,107 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public JsonResult Get()
+        public string Get()
         {
             string query = @"
-                    select * from dbo.Pratos";
+                    select * from dbo.Pratos LEFT JOIN dbo.Receitas ON dbo.Receitas.PratoId = dbo.Pratos.PratoId";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("ESIAppCon");
             SqlDataReader myReader;
+            List<ReceitaPrato> receitaPratos = new List<ReceitaPrato>();
             using (SqlConnection myCon = new SqlConnection(sqlDataSource))
             {
                 myCon.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
                     myReader = myCommand.ExecuteReader();
-                    table.Load(myReader); ;
+                    table.Load(myReader);
+                    foreach (DataRow linha in table.Rows)
+                    {
+                        string PratoId = linha["PratoId"].ToString();
+                        string PratoNome = linha["PratoNome"].ToString();
+                        decimal PratoPreco = (decimal)linha["PratoPreco"];
+                        int ingrediente = (int)linha["IngredienteId"];
+                        decimal quantidade = (decimal)linha["Quantidade"];
+                        ReceitaPrato currentReceitaPrato = receitaPratos.Find(x => x.PratoId == PratoId);
+                        if(currentReceitaPrato.PratoId == null)
+                        {
+                            currentReceitaPrato = new ReceitaPrato(PratoId, PratoNome, PratoPreco, new IngredienteQTD(ingrediente, quantidade));
+                            receitaPratos.Add(currentReceitaPrato);
+                        } else
+                        {
+                            currentReceitaPrato.ListaIngredientes.Add(new IngredienteQTD(ingrediente, quantidade));
+                        }
 
+                       // Console.WriteLine("Lendo: " + nome + " Ingrediente: " + ingrediente + " Quantidade:" + quantidade);
+                    }
                     myReader.Close();
                     myCon.Close();
                 }
             }
-            return new JsonResult(table);
+
+            JsonResult results = new JsonResult(table);
+            List<ReceitaPrato> receitaPratosFinal = new List<ReceitaPrato>(receitaPratos);
+            foreach (ReceitaPrato receitaPrato in receitaPratos)
+            {
+                bool hasIngredients = true;
+                IngredientesController ingredientesController = new IngredientesController(_configuration);
+                foreach (IngredienteQTD ingredienteQTD in receitaPrato.ListaIngredientes)
+                {
+                    int ingredient = ingredientesController.GetIngredientAvailability(ingredienteQTD.IngredienteId, ingredienteQTD.Quantidade);
+                    if(ingredient == 0)
+                    {
+                        hasIngredients = false;
+                    }
+                }
+                if (!hasIngredients)
+                {
+                    receitaPratosFinal.Remove(receitaPrato);
+                }
+            }
+
+            foreach(ReceitaPrato receitaFinal in receitaPratosFinal)
+            {
+                Console.WriteLine(receitaFinal.ToString());
+            }
+            return JsonConvert.SerializeObject(receitaPratosFinal);
+        }
+
+        public struct ReceitaPrato {
+            public string PratoId, PratoNome;
+            public decimal PratoPreco;
+            public List<IngredienteQTD> ListaIngredientes;
+            public override string ToString()
+            {
+                string listaIngredientesString = "";
+                foreach(var ingrediente in ListaIngredientes)
+                {
+                    listaIngredientesString += ingrediente.ToString();
+                }
+                return "Prato ID: " + PratoId + "Lista Ing: " + listaIngredientesString;
+            }
+            public ReceitaPrato(string _pratoId, string _pratoNome, decimal _pratoPreco, IngredienteQTD novoIngrediente)
+            {
+                this.PratoNome = _pratoNome;
+                this.PratoPreco = _pratoPreco;
+                this.ListaIngredientes = new List<IngredienteQTD>();
+                this.PratoId = _pratoId;
+                this.ListaIngredientes.Add(novoIngrediente);
+            }
+        }
+        public struct IngredienteQTD {
+            public int IngredienteId;
+            public decimal Quantidade;
+
+            public override string ToString()
+            {
+                return "[Ingrediente: " + this.IngredienteId + " | Quantidade: " + this.Quantidade + "]";
+            }
+            public IngredienteQTD(int _ingrediente, decimal _quantidade)
+            {
+                this.IngredienteId = _ingrediente;
+                this.Quantidade = _quantidade;
+            }
         }
 
 
@@ -53,7 +134,8 @@ namespace WebAPI.Controllers
             string str = dec.ToString().Replace(",", ".");
             string query = @"
                     insert into dbo.Pratos values
-                    ('" + prato.PratoNome + @"' , 
+                    ('" + prato.PratoId + @"' ,
+                       '" + prato.PratoNome + @"' , 
                     '" + prato.PratoDescricao + @"',
                     " + str + @")
                     ";
