@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7692574-a4fa-4ec8-ac92-771343813ac8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Modal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/Blog.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Blog.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Products.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Products.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +47,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1639869134270</updated>
-      <workItem from="1639869138501" duration="15980000" />
+      <workItem from="1639869138501" duration="16426000" />
     </task>
     <servers />
   </component>

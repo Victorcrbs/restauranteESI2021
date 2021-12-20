@@ -15,25 +15,17 @@ import ProductModal from '../components/Modal';
 // components
 import Page from '../components/Page';
 
+const axios = require('axios');
+
 // ----------------------------------------------------------------------
 
 export default function Estoque() {
-  // eslint-disable-next-line global-require
-  const axios = require('axios');
-  let ingredientes = [];
-
-  axios
+  const response = axios
     .get('http://localhost:5000/api/ingredientes')
-    .then((response) => {
-      // handle success
-      ingredientes = response.data;
-    })
+    .then((response) => response.data)
     .catch((error) => {
       // handle error
       console.log(error);
-    })
-    .then(() => {
-      // always executed
     });
   const rows = [
     {
@@ -96,8 +88,8 @@ export default function Estoque() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {console.log(ingredientes)}
-              {ingredientes.map((ingrediente) => (
+              {console.log(response)}
+              {response.data.map((ingrediente) => (
                 <TableRow
                   key={ingrediente.IngredienteNome}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

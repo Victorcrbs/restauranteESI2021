@@ -9,24 +9,17 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import * as React from 'react';
 import Page from '../components/Page';
+
+const axios = require('axios');
 // ----------------------------------------------------------------------
 
 export default function Cardapio() {
-  // eslint-disable-next-line global-require
-  const axios = require('axios');
-  let rows = [];
-
-  axios
+  const response = axios
     .get('http://localhost:5000/api/pratos')
-    .then((response) => {
-      rows = response.data;
-    })
+    .then((response) => response.data)
     .catch((error) => {
       // handle error
       console.log(error);
-    })
-    .then(() => {
-      // always executed
     });
 
   // add axios call
@@ -137,7 +130,7 @@ export default function Cardapio() {
           </Button>
         </Stack>
         <Grid container spacing={2} direction="row" justify="flex-start" alignItems="flex-start">
-          {rows.map((prato) => (
+          {response.data.map((prato) => (
             <Grid item xs={12} sm={6} md={3}>
               <Card sx={{ maxWidth: 345 }}>
                 <CardMedia component="img" height="140" image={imagemPratos(prato.PratoNome)} />
