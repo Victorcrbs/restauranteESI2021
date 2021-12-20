@@ -29,7 +29,7 @@ export default function ProductModal() {
   const [IngredienteQuantidade, setIngredienteQuantidade] = useState('');
 
   const handleSubmit = () => {
-    axios.put('http://localhost:5000/api/Ingredientes', {
+    axios.post('http://localhost:5000/api/ingredientes', {
       IngredienteNome,
       IngredienteQuantidade
     });

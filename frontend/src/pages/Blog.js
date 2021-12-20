@@ -27,7 +27,6 @@ export default function Estoque() {
     .then((response) => {
       // handle success
       ingredientes = response.data;
-      console.log(ingredientes);
     })
     .catch((error) => {
       // handle error
@@ -97,12 +96,16 @@ export default function Estoque() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {ingredientes.map((row) => (
-                <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+              {console.log(ingredientes)}
+              {ingredientes.map((ingrediente) => (
+                <TableRow
+                  key={ingrediente.IngredienteNome}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
                   <TableCell component="th" scope="row">
-                    {row.IngredienteNome}
+                    {ingrediente.IngredienteNome}
                   </TableCell>
-                  <TableCell>{row.IngredienteQuantidade}</TableCell>
+                  <TableCell>{ingrediente.IngredienteQuantidade}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
