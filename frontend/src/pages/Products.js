@@ -8,15 +8,17 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import * as React from 'react';
+import { useState } from 'react';
 import Page from '../components/Page';
 
 const axios = require('axios');
 // ----------------------------------------------------------------------
 
 export default function Cardapio() {
-  const response = axios
+  const [response, setResponse] = useState();
+  axios
     .get('http://localhost:5000/api/pratos')
-    .then((response) => response.data)
+    .then((response) => setResponse(response.data))
     .catch((error) => {
       // handle error
       console.log(error);
@@ -130,7 +132,7 @@ export default function Cardapio() {
           </Button>
         </Stack>
         <Grid container spacing={2} direction="row" justify="flex-start" alignItems="flex-start">
-          {response.data.map((prato) => (
+          {response.map((prato) => (
             <Grid item xs={12} sm={6} md={3}>
               <Card sx={{ maxWidth: 345 }}>
                 <CardMedia component="img" height="140" image={imagemPratos(prato.PratoNome)} />
