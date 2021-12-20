@@ -65,8 +65,8 @@ export default function ProductModal() {
             </Grid>
             <Grid item xs={5} />
             <Grid>
-              <Button style={{ marginTop: 30 }} variant="contained" onClick={handleSubmit()}>
-                Submeter
+              <Button style={{ marginTop: 30 }} variant="contained">
+                Adicionar
               </Button>
             </Grid>
           </Grid>
