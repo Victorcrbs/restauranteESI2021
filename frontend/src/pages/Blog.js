@@ -11,6 +11,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { useState } from 'react';
 import ProductModal from '../components/Modal';
 // components
 import Page from '../components/Page';
@@ -20,9 +21,10 @@ const axios = require('axios');
 // ----------------------------------------------------------------------
 
 export default function Estoque() {
-  const response = axios
+  const [response, setResponse] = useState();
+  axios
     .get('http://localhost:5000/api/ingredientes')
-    .then((response) => response.data)
+    .then((response) => setResponse(response.data))
     .catch((error) => {
       // handle error
       console.log(error);
@@ -89,17 +91,18 @@ export default function Estoque() {
             </TableHead>
             <TableBody>
               {console.log(response)}
-              {response.data.map((ingrediente) => (
-                <TableRow
-                  key={ingrediente.IngredienteNome}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    {ingrediente.IngredienteNome}
-                  </TableCell>
-                  <TableCell>{ingrediente.IngredienteQuantidade}</TableCell>
-                </TableRow>
-              ))}
+              {response &&
+                response.map((ingrediente) => (
+                  <TableRow
+                    key={ingrediente.IngredienteNome}
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                  >
+                    <TableCell component="th" scope="row">
+                      {ingrediente.IngredienteNome}
+                    </TableCell>
+                    <TableCell>{ingrediente.IngredienteQuantidade}</TableCell>
+                  </TableRow>
+                ))}
             </TableBody>
           </Table>
         </TableContainer>
