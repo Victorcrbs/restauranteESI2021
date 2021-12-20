@@ -14,12 +14,12 @@ import Page from '../components/Page';
 export default function Cardapio() {
   // eslint-disable-next-line global-require
   const axios = require('axios');
+  let rows = [];
 
   axios
     .get('http://localhost:5000/api/pratos')
     .then((response) => {
-      // handle success
-      console.log(response);
+      rows = response.data;
     })
     .catch((error) => {
       // handle error
@@ -137,7 +137,7 @@ export default function Cardapio() {
           </Button>
         </Stack>
         <Grid container spacing={2} direction="row" justify="flex-start" alignItems="flex-start">
-          {pratos.map((prato) => (
+          {rows.map((prato) => (
             <Grid item xs={12} sm={6} md={3}>
               <Card sx={{ maxWidth: 345 }}>
                 <CardMedia component="img" height="140" image={imagemPratos(prato.PratoNome)} />

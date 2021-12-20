@@ -20,12 +20,13 @@ import Page from '../components/Page';
 export default function Estoque() {
   // eslint-disable-next-line global-require
   const axios = require('axios');
+  let ingredientes = [];
 
   axios
     .get('http://localhost:5000/api/ingredientes')
     .then((response) => {
       // handle success
-      console.log(response);
+      ingredientes = response.data;
     })
     .catch((error) => {
       // handle error
@@ -95,7 +96,7 @@ export default function Estoque() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
+              {ingredientes.map((row) => (
                 <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                   <TableCell component="th" scope="row">
                     {row.IngredienteNome}
