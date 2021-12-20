@@ -140,6 +140,8 @@ export default function Cardapio() {
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                       {prato.PratoNome}
+                    </Typography>
+                    <Typography gutterBottom variant="h4" component="div">
                       {`R$:${prato.PratoPreco}`}
                     </Typography>
                   </CardContent>

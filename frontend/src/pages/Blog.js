@@ -90,13 +90,9 @@ export default function Estoque() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {console.log(response)}
               {response &&
-                response.map((ingrediente) => (
-                  <TableRow
-                    key={ingrediente.IngredienteNome}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                  >
+                response.map((ingrediente, index) => (
+                  <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                     <TableCell component="th" scope="row">
                       {ingrediente.IngredienteNome}
                     </TableCell>
