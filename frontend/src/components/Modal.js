@@ -38,7 +38,7 @@ export default function ProductModal() {
   return (
     <div>
       <Button variant="contained" startIcon={<Icon icon={plusFill} />} onClick={handleOpen}>
-        Adicionar receita
+        Adicionar Ingrediente
       </Button>
       <Modal
         open={open}
