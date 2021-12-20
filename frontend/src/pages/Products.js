@@ -132,21 +132,23 @@ export default function Cardapio() {
           </Button>
         </Stack>
         <Grid container spacing={2} direction="row" justify="flex-start" alignItems="flex-start">
-          {response.map((prato) => (
-            <Grid item xs={12} sm={6} md={3}>
-              <Card sx={{ maxWidth: 345 }}>
-                <CardMedia component="img" height="140" image={imagemPratos(prato.PratoNome)} />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {prato.PratoNome}
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Button>Pedir</Button>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
+          {response &&
+            response.map((prato) => (
+              <Grid item xs={12} sm={6} md={3}>
+                <Card sx={{ maxWidth: 345 }}>
+                  <CardMedia component="img" height="140" image={imagemPratos(prato.PratoNome)} />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                      {prato.PratoNome}
+                      {`R$:${prato.PratoPreco}`}
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button>Pedir</Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+            ))}
         </Grid>
       </Container>
     </Page>
