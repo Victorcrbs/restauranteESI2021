@@ -26,8 +26,8 @@ export default function Estoque() {
     .get('http://localhost:5000/api/ingredientes')
     .then((response) => {
       // handle success
-      console.log(ingrdientes);
       ingredientes = response.data;
+      console.log(ingredientes);
     })
     .catch((error) => {
       // handle error
