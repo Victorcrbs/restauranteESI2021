@@ -12,6 +12,23 @@ import Page from '../components/Page';
 // ----------------------------------------------------------------------
 
 export default function Cardapio() {
+  // eslint-disable-next-line global-require
+  const axios = require('axios');
+
+  axios
+    .get('http://localhost:5000/api/pratos')
+    .then((response) => {
+      // handle success
+      console.log(response);
+    })
+    .catch((error) => {
+      // handle error
+      console.log(error);
+    })
+    .then(() => {
+      // always executed
+    });
+
   // add axios call
   // lembrar de quando pedir um prato mandar um request pra alterar o estoque de acordo com os ingredientes usados
 

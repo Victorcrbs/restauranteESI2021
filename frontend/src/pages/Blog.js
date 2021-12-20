@@ -11,15 +11,29 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
+import ProductModal from '../components/Modal';
 // components
 import Page from '../components/Page';
 
 // ----------------------------------------------------------------------
 
 export default function Estoque() {
-  // add axios call
+  // eslint-disable-next-line global-require
+  const axios = require('axios');
 
+  axios
+    .get('http://localhost:5000/api/ingredientes')
+    .then((response) => {
+      // handle success
+      console.log(response);
+    })
+    .catch((error) => {
+      // handle error
+      console.log(error);
+    })
+    .then(() => {
+      // always executed
+    });
   const rows = [
     {
       IngredienteNome: 'a',
@@ -70,14 +84,7 @@ export default function Estoque() {
           <Typography variant="h4" gutterBottom>
             Estoque
           </Typography>
-          <Button
-            variant="contained"
-            component={RouterLink}
-            to="#"
-            startIcon={<Icon icon={plusFill} />}
-          >
-            Adicionar ingrediente
-          </Button>
+          <ProductModal />
         </Stack>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
