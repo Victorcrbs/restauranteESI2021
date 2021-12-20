@@ -48,7 +48,7 @@ export default function ProductModal() {
       >
         <Box sx={style}>
           <Grid container spacing={2}>
-            <Grid xs={6}>
+            <Grid item xs={6}>
               <TextField
                 label="Nome do ingrediente:"
                 value={IngredienteNome}
@@ -56,14 +56,14 @@ export default function ProductModal() {
                 style={{ marginLeft: 20 }}
               />
             </Grid>
-            <Grid xs={6}>
+            <Grid item xs={6}>
               <TextField
                 label="Quantidade do ingrediente:"
                 value={IngredienteQuantidade}
                 onInput={(e) => setIngredienteQuantidade(e.target.value)}
               />
             </Grid>
-            <Grid xs={5} />
+            <Grid item xs={5} />
             <Grid>
               <Button style={{ marginTop: 30 }} variant="contained" onClick={handleSubmit()}>
                 Submeter
