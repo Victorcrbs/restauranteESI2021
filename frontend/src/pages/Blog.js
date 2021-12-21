@@ -30,7 +30,7 @@ export default function Estoque() {
         // handle error
         console.log(error);
       });
-  });
+  }, []);
   const rows = [
     {
       IngredienteNome: 'a',

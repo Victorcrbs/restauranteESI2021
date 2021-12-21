@@ -24,7 +24,7 @@ export default function Cardapio() {
         // handle error
         console.log(error);
       });
-  });
+  }, []);
   // add axios call
   // lembrar de quando pedir um prato mandar um request pra alterar o estoque de acordo com os ingredientes usados
 
