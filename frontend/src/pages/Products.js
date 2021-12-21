@@ -8,7 +8,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Page from '../components/Page';
 
 const axios = require('axios');
@@ -16,14 +16,15 @@ const axios = require('axios');
 
 export default function Cardapio() {
   const [response, setResponse] = useState();
-  axios
-    .get('http://localhost:5000/api/pratos')
-    .then((response) => setResponse(response.data))
-    .catch((error) => {
-      // handle error
-      console.log(error);
-    });
-
+  useEffect(() => {
+    axios
+      .get('http://localhost:5000/api/pratos')
+      .then((response) => setResponse(response.data))
+      .catch((error) => {
+        // handle error
+        console.log(error);
+      });
+  });
   // add axios call
   // lembrar de quando pedir um prato mandar um request pra alterar o estoque de acordo com os ingredientes usados
 

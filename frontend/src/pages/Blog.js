@@ -11,7 +11,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ProductModal from '../components/Modal';
 // components
 import Page from '../components/Page';
@@ -22,13 +22,15 @@ const axios = require('axios');
 
 export default function Estoque() {
   const [response, setResponse] = useState();
-  axios
-    .get('http://localhost:5000/api/ingredientes')
-    .then((response) => setResponse(response.data))
-    .catch((error) => {
-      // handle error
-      console.log(error);
-    });
+  useEffect(() => {
+    axios
+      .get('http://localhost:5000/api/ingredientes')
+      .then((response) => setResponse(response.data))
+      .catch((error) => {
+        // handle error
+        console.log(error);
+      });
+  });
   const rows = [
     {
       IngredienteNome: 'a',
