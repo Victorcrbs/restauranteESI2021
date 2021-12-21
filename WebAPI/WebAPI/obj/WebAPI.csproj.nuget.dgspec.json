@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\diego\\Source\\Repos\\restauranteESI2021\\WebAPI\\WebAPI\\WebAPI.csproj": {}
+    "C:\\Users\\rtoma\\source\\repos\\restauranteESI2021\\WebAPI\\WebAPI\\WebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\diego\\Source\\Repos\\restauranteESI2021\\WebAPI\\WebAPI\\WebAPI.csproj": {
+    "C:\\Users\\rtoma\\source\\repos\\restauranteESI2021\\WebAPI\\WebAPI\\WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\diego\\Source\\Repos\\restauranteESI2021\\WebAPI\\WebAPI\\WebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\rtoma\\source\\repos\\restauranteESI2021\\WebAPI\\WebAPI\\WebAPI.csproj",
         "projectName": "WebAPI",
-        "projectPath": "C:\\Users\\diego\\Source\\Repos\\restauranteESI2021\\WebAPI\\WebAPI\\WebAPI.csproj",
-        "packagesPath": "C:\\Users\\diego\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\diego\\Source\\Repos\\restauranteESI2021\\WebAPI\\WebAPI\\obj\\",
+        "projectPath": "C:\\Users\\rtoma\\source\\repos\\restauranteESI2021\\WebAPI\\WebAPI\\WebAPI.csproj",
+        "packagesPath": "C:\\Users\\rtoma\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rtoma\\source\\repos\\restauranteESI2021\\WebAPI\\WebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\rtoma\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -67,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

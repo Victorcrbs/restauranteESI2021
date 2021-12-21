@@ -6526,19 +6526,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\diego\\.nuget\\packages\\": {}
+    "C:\\Users\\rtoma\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\diego\\Source\\Repos\\restauranteESI2021\\WebAPI\\WebAPITests\\WebAPITests.csproj",
+      "projectUniqueName": "C:\\Users\\rtoma\\source\\repos\\restauranteESI2021\\WebAPI\\WebAPITests\\WebAPITests.csproj",
       "projectName": "WebAPITests",
-      "projectPath": "C:\\Users\\diego\\Source\\Repos\\restauranteESI2021\\WebAPI\\WebAPITests\\WebAPITests.csproj",
-      "packagesPath": "C:\\Users\\diego\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\diego\\Source\\Repos\\restauranteESI2021\\WebAPI\\WebAPITests\\obj\\",
+      "projectPath": "C:\\Users\\rtoma\\source\\repos\\restauranteESI2021\\WebAPI\\WebAPITests\\WebAPITests.csproj",
+      "packagesPath": "C:\\Users\\rtoma\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\rtoma\\source\\repos\\restauranteESI2021\\WebAPI\\WebAPITests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\rtoma\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6552,8 +6552,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\diego\\Source\\Repos\\restauranteESI2021\\WebAPI\\WebAPI\\WebAPI.csproj": {
-              "projectPath": "C:\\Users\\diego\\Source\\Repos\\restauranteESI2021\\WebAPI\\WebAPI\\WebAPI.csproj"
+            "C:\\Users\\rtoma\\source\\repos\\restauranteESI2021\\WebAPI\\WebAPI\\WebAPI.csproj": {
+              "projectPath": "C:\\Users\\rtoma\\source\\repos\\restauranteESI2021\\WebAPI\\WebAPI\\WebAPI.csproj"
             }
           }
         }
@@ -6600,7 +6600,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

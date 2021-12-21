@@ -34,25 +34,25 @@ export default function Cardapio() {
 
   const imagemPratos = (prato) => {
     switch (prato) {
-      case 'teste':
+      case 'Frutas Vermelhas':
         return '/static/pratos/teste.jpg';
-      case 'teste2':
+      case 'Salada':
         return '/static/pratos/teste2.jpg';
-      case 'teste3':
+      case 'Spaghetti ao Sugo':
         return '/static/pratos/teste3.jpg';
-      case 'teste4':
+      case 'Salada com Queijo':
         return '/static/pratos/teste4.jpg';
-      case 'teste5':
+      case 'Hamburguer':
         return '/static/pratos/teste5.jpg';
-      case 'teste6':
+      case 'Coxa e Sobrecoxa':
         return '/static/pratos/teste6.jpg';
-      case 'teste7':
+      case 'Pizza':
         return '/static/pratos/teste7.jpg';
-      case 'teste8':
+      case 'Feijoada':
         return '/static/pratos/teste8.jpg';
-      case 'teste9':
+      case 'Virado a Paulista':
         return '/static/pratos/teste9.jpg';
-      case 'teste10':
+      case 'Picanha':
         return '/static/pratos/teste10.jpg';
       default:
         return '/static/pratos/teste.jpg';

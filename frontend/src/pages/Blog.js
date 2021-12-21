@@ -27,6 +27,7 @@ export default function Estoque() {
     .then((response) => {
       // handle success
       ingredientes = response.data;
+      console.log(ingredientes)
     })
     .catch((error) => {
       // handle error
