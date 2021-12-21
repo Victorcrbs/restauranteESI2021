@@ -27,14 +27,15 @@ namespace WebAPI.Controllers
         public int GetIngredientAvailability(int id, decimal qtd)
         {
             string query = @"
-                    select * from dbo.Ingredientes WHERE dbo.Ingredientes.id_ing = " + id + " AND dbo.Ingredientes.qtd_ing >= " + qtd;
+                    select * from dbo.Ingredientes WHERE dbo.Ingredientes.IngredienteId = " + id + " AND dbo.Ingredientes.IngredienteQuantidade >= " + qtd;
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("ESIAppCon");
             SqlDataReader myReader;
             using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+
             {
                 myCon.Open();
-                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                using (SqlCommand myCommand = new SqlCommand(query.Replace(",","."), myCon))
                 {
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);

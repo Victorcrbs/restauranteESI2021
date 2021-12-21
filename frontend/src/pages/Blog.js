@@ -11,29 +11,23 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { useState } from 'react';
 import ProductModal from '../components/Modal';
 // components
 import Page from '../components/Page';
 
+const axios = require('axios');
+
 // ----------------------------------------------------------------------
 
 export default function Estoque() {
-  // eslint-disable-next-line global-require
-  const axios = require('axios');
-  let ingredientes = [];
-
+  const [response, setResponse] = useState();
   axios
     .get('http://localhost:5000/api/ingredientes')
-    .then((response) => {
-      // handle success
-      ingredientes = response.data;
-    })
+    .then((response) => setResponse(response.data))
     .catch((error) => {
       // handle error
       console.log(error);
-    })
-    .then(() => {
-      // always executed
     });
   const rows = [
     {
@@ -96,18 +90,15 @@ export default function Estoque() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {console.log(ingredientes)}
-              {ingredientes.map((ingrediente) => (
-                <TableRow
-                  key={ingrediente.IngredienteNome}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    {ingrediente.IngredienteNome}
-                  </TableCell>
-                  <TableCell>{ingrediente.IngredienteQuantidade}</TableCell>
-                </TableRow>
-              ))}
+              {response &&
+                response.map((ingrediente, index) => (
+                  <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                    <TableCell component="th" scope="row">
+                      {ingrediente.IngredienteNome}
+                    </TableCell>
+                    <TableCell>{ingrediente.IngredienteQuantidade}</TableCell>
+                  </TableRow>
+                ))}
             </TableBody>
           </Table>
         </TableContainer>

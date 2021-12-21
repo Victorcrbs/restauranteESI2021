@@ -69,7 +69,9 @@ namespace WebAPI.Controllers
                 IngredientesController ingredientesController = new IngredientesController(_configuration);
                 foreach (IngredienteQTD ingredienteQTD in receitaPrato.ListaIngredientes)
                 {
-                    int ingredient = ingredientesController.GetIngredientAvailability(ingredienteQTD.IngredienteId, ingredienteQTD.Quantidade);
+                    int ID = ingredienteQTD.IngredienteId;
+                    decimal QTD = ingredienteQTD.Quantidade;
+                    int ingredient = ingredientesController.GetIngredientAvailability(ID, QTD);
                     if(ingredient == 0)
                     {
                         hasIngredients = false;
@@ -83,7 +85,7 @@ namespace WebAPI.Controllers
 
             foreach(ReceitaPrato receitaFinal in receitaPratosFinal)
             {
-                Console.WriteLine(receitaFinal.ToString());
+                //Console.WriteLine(receitaFinal.ToString());
             }
             return JsonConvert.SerializeObject(receitaPratosFinal);
         }
@@ -134,8 +136,7 @@ namespace WebAPI.Controllers
             string str = dec.ToString().Replace(",", ".");
             string query = @"
                     insert into dbo.Pratos values
-                    ('" + prato.PratoId + @"' ,
-                       '" + prato.PratoNome + @"' , 
+                    ('" + prato.PratoNome + @"' , 
                     '" + prato.PratoDescricao + @"',
                     " + str + @")
                     ";

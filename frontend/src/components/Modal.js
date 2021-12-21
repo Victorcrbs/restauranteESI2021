@@ -28,12 +28,12 @@ export default function ProductModal() {
   const [IngredienteNome, setIngredienteNome] = useState('');
   const [IngredienteQuantidade, setIngredienteQuantidade] = useState('');
 
-  const handleSubmit = () => {
-    axios.post('http://localhost:5000/api/ingredientes', {
-      IngredienteNome,
-      IngredienteQuantidade
-    });
-  };
+  // const handleSubmit = () => {
+  //   axios.post('http://localhost:5000/api/ingredientes', {
+  //     IngredienteNome,
+  //     IngredienteQuantidade
+  //   });
+  // };
 
   return (
     <div>
@@ -65,8 +65,8 @@ export default function ProductModal() {
             </Grid>
             <Grid item xs={5} />
             <Grid>
-              <Button style={{ marginTop: 30 }} variant="contained" onClick={handleSubmit()}>
-                Submeter
+              <Button style={{ marginTop: 30 }} variant="contained">
+                Adicionar
               </Button>
             </Grid>
           </Grid>

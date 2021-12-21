@@ -8,25 +8,20 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import * as React from 'react';
+import { useState } from 'react';
 import Page from '../components/Page';
+
+const axios = require('axios');
 // ----------------------------------------------------------------------
 
 export default function Cardapio() {
-  // eslint-disable-next-line global-require
-  const axios = require('axios');
-  let rows = [];
-
+  const [response, setResponse] = useState();
   axios
     .get('http://localhost:5000/api/pratos')
-    .then((response) => {
-      rows = response.data;
-    })
+    .then((response) => setResponse(response.data))
     .catch((error) => {
       // handle error
       console.log(error);
-    })
-    .then(() => {
-      // always executed
     });
 
   // add axios call
@@ -34,25 +29,25 @@ export default function Cardapio() {
 
   const imagemPratos = (prato) => {
     switch (prato) {
-      case 'teste':
+      case 'Frutas Vermelhas':
         return '/static/pratos/teste.jpg';
-      case 'teste2':
+      case 'Salada':
         return '/static/pratos/teste2.jpg';
-      case 'teste3':
+      case 'Spaghetti ao Sugo':
         return '/static/pratos/teste3.jpg';
-      case 'teste4':
+      case 'Salada com Queijo':
         return '/static/pratos/teste4.jpg';
-      case 'teste5':
+      case 'Hamburguer':
         return '/static/pratos/teste5.jpg';
-      case 'teste6':
+      case 'Coxa e Sobrecoxa':
         return '/static/pratos/teste6.jpg';
-      case 'teste7':
+      case 'Pizza':
         return '/static/pratos/teste7.jpg';
-      case 'teste8':
+      case 'Feijoada':
         return '/static/pratos/teste8.jpg';
-      case 'teste9':
+      case 'Virado a Paulista':
         return '/static/pratos/teste9.jpg';
-      case 'teste10':
+      case 'Picanha':
         return '/static/pratos/teste10.jpg';
       default:
         return '/static/pratos/teste.jpg';
@@ -137,21 +132,25 @@ export default function Cardapio() {
           </Button>
         </Stack>
         <Grid container spacing={2} direction="row" justify="flex-start" alignItems="flex-start">
-          {rows.map((prato) => (
-            <Grid item xs={12} sm={6} md={3}>
-              <Card sx={{ maxWidth: 345 }}>
-                <CardMedia component="img" height="140" image={imagemPratos(prato.PratoNome)} />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {prato.PratoNome}
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Button>Pedir</Button>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
+          {response &&
+            response.map((prato) => (
+              <Grid item xs={12} sm={6} md={3}>
+                <Card sx={{ maxWidth: 345 }}>
+                  <CardMedia component="img" height="140" image={imagemPratos(prato.PratoNome)} />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                      {prato.PratoNome}
+                    </Typography>
+                    <Typography gutterBottom variant="h4" component="div">
+                      {`R$:${prato.PratoPreco}`}
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button>Pedir</Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+            ))}
         </Grid>
       </Container>
     </Page>
