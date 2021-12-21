@@ -86,8 +86,23 @@ namespace WebAPI.Controllers.Tests
             JsonResult retorno = controller.Delete(4);
 
             // Assert
-
             Assert.AreEqual(retorno.Value, "Deleted Successfully");
+        }
+
+        [TestMethod()]
+        public void GetIngredientAvailabilityTest()
+        {
+            // Arrange
+            configurationBuilder.AddJsonFile("AppSettings.json");
+            IConfiguration configuration = configurationBuilder.Build();
+            var controller = new IngredientesController(configuration);
+
+
+            // Act
+            int retorno = controller.GetIngredientAvailability(3,45);
+
+            // Assert
+            Assert.AreEqual(retorno,1);
         }
     }
 }

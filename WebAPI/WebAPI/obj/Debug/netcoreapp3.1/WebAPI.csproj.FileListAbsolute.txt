@@ -93,4 +93,3 @@ C:\Users\diego\Source\Repos\restauranteESI2021\WebAPI\WebAPI\obj\Debug\netcoreap
 C:\Users\diego\Source\Repos\restauranteESI2021\WebAPI\WebAPI\obj\Debug\netcoreapp3.1\WebAPI.dll
 C:\Users\diego\Source\Repos\restauranteESI2021\WebAPI\WebAPI\obj\Debug\netcoreapp3.1\WebAPI.pdb
 C:\Users\diego\Source\Repos\restauranteESI2021\WebAPI\WebAPI\obj\Debug\netcoreapp3.1\WebAPI.genruntimeconfig.cache
-C:\Users\diego\Source\Repos\restauranteESI2021\WebAPI\WebAPI\obj\Debug\netcoreapp3.1\Razor\Views\Home\Estoque.cshtml.g.cs

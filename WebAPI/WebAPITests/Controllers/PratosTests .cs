@@ -28,7 +28,7 @@ namespace WebAPI.Controllers.Tests
 
 
             // Act
-            JsonResult retorno = controller.Get();
+            String retorno = controller.Get();
 
             // Assert
 

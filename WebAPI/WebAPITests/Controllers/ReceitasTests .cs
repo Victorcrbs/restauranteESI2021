@@ -31,7 +31,6 @@ namespace WebAPI.Controllers.Tests
             JsonResult retorno = controller.Get(1);
 
             // Assert
-
             Assert.IsNotNull(retorno);
         }
 

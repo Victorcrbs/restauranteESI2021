@@ -37,7 +37,7 @@ namespace WebAPI.Controllers
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
                     myReader = myCommand.ExecuteReader();
-                    table.Load(myReader); ;
+                    table.Load(myReader);
                     //Console.WriteLine("Linhas retornadas para id: " + id + " - " + table.Rows.Count);
                     myReader.Close();
                     myCon.Close();
